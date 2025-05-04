@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  app:
+    build: ./app
+    expose:
+      - "5000:5000"
+    networks:
+      - my_net
+  
+  redis:
+    image: redis:latest
+    networks:
+      - my_net
+networks:
+  my_net:
+    driver: bridge
+    

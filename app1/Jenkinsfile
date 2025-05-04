@@ -1,0 +1,29 @@
+pipeline{
+    angent any
+    stages{
+        stages('Checkout'){
+            steps{
+                script{
+                    checkout scm
+                }
+            }
+        }
+        stages('Build'){
+            steps{
+                script{
+                    sh 'echo "Building the application..."'
+                    sh 'docker build -t flaskapp:latest .'
+                }
+            }
+
+        }
+        stages('Run with compose compose'){
+            steps{
+                script{
+                    sh 'echo "Running the application with docker-compose..."'
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+    }
+}
